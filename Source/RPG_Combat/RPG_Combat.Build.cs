@@ -15,6 +15,7 @@ public class RPG_Combat : ModuleRules
 			"InputCore",
 			"EnhancedInput",
 			"GameplayTags",
-            "EnhancedInput"});
+            "EnhancedInput",
+		"GameplayTasks"});
 	}
 }

@@ -10,6 +10,9 @@
 #include "DataAsset/Input/DataAsset_InputConfig.h"
 #include "Components/Input/WarriorInputComponent.h"
 #include "WarriorGameplayTags.h"
+#include "AbilitySystem/WarriorAbilitySystemComponent.h"
+#include "AbilitySystem/WarriorAttributeSet.h"
+#include "DataAsset/StartupData/DataAsset_HeoStartupData.h"
 
 #include "WarriorDebugHelper.h"
 
@@ -38,6 +41,21 @@ AWarriorCharacter::AWarriorCharacter()
 
 }
 
+void AWarriorCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (!CharacterStartupData.IsNull())
+	{
+		if (UDataAsset_StartupDataBase* LoadedData = CharacterStartupData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
+		}
+
+	}
+
+}
+
 void AWarriorCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -62,7 +80,6 @@ void AWarriorCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 void AWarriorCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	Debug::Print(TEXT("Working"));
 }
 
 void AWarriorCharacter::Input_Move(const FInputActionValue& InputActionValue)
