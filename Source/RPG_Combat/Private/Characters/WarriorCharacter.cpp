@@ -13,7 +13,7 @@
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "AbilitySystem/WarriorAttributeSet.h"
 #include "DataAsset/StartupData/DataAsset_HeoStartupData.h"
-#include "Components/Combat/HeroCombatController.h"
+#include "Components/Combat/HeroCombatComponent.h"
 
 #include "WarriorDebugHelper.h"
 
@@ -40,7 +40,7 @@ AWarriorCharacter::AWarriorCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 
-	HeroCombatController = CreateDefaultSubobject<UHeroCombatController>(TEXT("HeroCombatController"));
+	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>(TEXT("HeroCombatComponent"));
 }
 
 void AWarriorCharacter::PossessedBy(AController* NewController)

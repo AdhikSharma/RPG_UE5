@@ -4,7 +4,7 @@
 #include "AbilitySystem/Abilities/WarriorHeroGameplayAbility.h"
 #include "Characters/WarriorCharacter.h"
 #include "Controllers/WarriorHeroController.h"
-#include "Components/Combat/HeroCombatController.h"
+#include "Components/Combat/HeroCombatComponent.h"
 
 AWarriorCharacter* UWarriorHeroGameplayAbility::GetHeroCharacterFromActorInfo()
 {
@@ -16,17 +16,17 @@ AWarriorCharacter* UWarriorHeroGameplayAbility::GetHeroCharacterFromActorInfo()
 	return CachedWarriorCharacter.IsValid()? CachedWarriorCharacter.Get(): nullptr;
 }
 
-AWarriorHeroController* UWarriorHeroGameplayAbility::GetWarriorHeroControllerFromActorInfo()
+UHeroCombatComponent* UWarriorHeroGameplayAbility::GetWarriorHeroComponentFromActorInfo()
 {
-	if (!CachedWarriorHeroController.IsValid())
+	if (!CachedWarriorHeroComponent.IsValid())
 	{
-		CachedWarriorHeroController = Cast<AWarriorHeroController>(CurrentActorInfo->PlayerController);
+		CachedWarriorHeroComponent = Cast<UHeroCombatComponent>(CurrentActorInfo->PlayerController);
 	}
 
-	return CachedWarriorHeroController.IsValid() ? CachedWarriorHeroController.Get() : nullptr;
+	return CachedWarriorHeroComponent.IsValid() ? CachedWarriorHeroComponent.Get() : nullptr;
 }
 
-UHeroCombatController* UWarriorHeroGameplayAbility::HeroCombatControllerFromActorInfo()
+UHeroCombatComponent* UWarriorHeroGameplayAbility::GetHeroCombatComponentFromActorInfo()
 {
-	return GetHeroCharacterFromActorInfo()->GetHeroCombatController();
+	return GetHeroCharacterFromActorInfo()->GetHeroCombatComponent();
 }

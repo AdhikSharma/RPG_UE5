@@ -5,14 +5,13 @@
 #include "CoreMinimal.h"
 #include "Components/PawnExtensionComponentBase.h"
 #include "GameplayTagContainer.h"
-#include "PawnCombatController.generated.h"
+#include "PawnCombatComponent.generated.h"
 
-class AWarriorWeaponBase;
 /**
  * 
  */
 UCLASS()
-class RPG_COMBAT_API UPawnCombatController : public UPawnExtensionComponentBase
+class RPG_COMBAT_API UPawnCombatComponent : public UPawnExtensionComponentBase
 {
 	GENERATED_BODY()
 
