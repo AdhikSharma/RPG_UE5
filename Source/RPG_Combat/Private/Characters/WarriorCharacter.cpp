@@ -53,7 +53,6 @@ void AWarriorCharacter::PossessedBy(AController* NewController)
 		{
 			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
 		}
-
 	}
 
 }
