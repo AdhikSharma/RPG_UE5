@@ -28,4 +28,12 @@ namespace WarriorGameplayTags
 	RPG_COMBAT_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_UnEquip_Axe);
 
 	RPG_COMBAT_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher);
+
+	/**Enemy Tags**/
+
+	RPG_COMBAT_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);
+
+	/**Shared Tags**/
+	RPG_COMBAT_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
+
 }

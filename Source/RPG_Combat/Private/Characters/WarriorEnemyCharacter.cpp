@@ -27,6 +27,11 @@ AWarriorEnemyCharacter::AWarriorEnemyCharacter()
 
 }
 
+UPawnCombatComponent* AWarriorEnemyCharacter::GetPawnCombatComponent() const
+{
+	return EnemyCombatComponent;
+}
+
 void AWarriorEnemyCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
@@ -50,9 +55,6 @@ void AWarriorEnemyCharacter::InitEnemyStartupData()
 				if (UDataAsset_StartupDataBase* LoadedData = CharacterStartupData.Get()) 
 				{
 					LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
-
-					Debug::Print(TEXT("Enemy Startup Data Loaded"),FColor::Green);
-
 				}
 			}
 		)

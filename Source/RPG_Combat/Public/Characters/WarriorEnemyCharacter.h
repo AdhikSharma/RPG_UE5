@@ -19,6 +19,10 @@ class RPG_COMBAT_API AWarriorEnemyCharacter : public AWarriorBaseCharacter
 public:
 	AWarriorEnemyCharacter();
 
+	//~ Begin IPawnCombatInterface Interface
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+	//~ End IPawnCombatInterface Interface
+
 protected:
 
 	//~ Begin APawn Interface
