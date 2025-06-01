@@ -18,14 +18,17 @@ class RPG_COMBAT_API UWarriorHeroGameplayAbility : public UWarriorGameplayAbilit
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintPure, Category = "WarriorAbility")
+	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
 	AWarriorCharacter* GetHeroCharacterFromActorInfo();
 
-	UFUNCTION(BlueprintPure, Category = "WarriorAbility")
+	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
 	AWarriorHeroController* GeHeroControllerFromActorInfo();
 
-	UFUNCTION(BlueprintPure, Category = "WarriorAbility")
+	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
 	UHeroCombatComponent* GetHeroCombatComponentFromActorInfo();
+
+	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
+	FGameplayEffectSpecHandle MakeHeroDamageEffectSpechandle(TSubclassOf<UGameplayEffect> EffectClass,float InWeaponBaseDamage,FGameplayTag InCurrentAttackTypeTag, int32 InUsedComboCount);
 
 private:
 	TWeakObjectPtr<AWarriorCharacter> CachedWarriorCharacter;
