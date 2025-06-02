@@ -24,6 +24,8 @@ class RPG_COMBAT_API UWarriorAttributeSet : public UAttributeSet
 public:
 	UWarriorAttributeSet();
 
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Health")
 	FGameplayAttributeData CurrentHealth;
 	ATTRIBUTE_ACCESSORS(UWarriorAttributeSet, CurrentHealth);
@@ -52,6 +54,4 @@ public:
 	FGameplayAttributeData DamageTaken;
 	ATTRIBUTE_ACCESSORS(UWarriorAttributeSet, DamageTaken);
 
-	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
-	
 };
