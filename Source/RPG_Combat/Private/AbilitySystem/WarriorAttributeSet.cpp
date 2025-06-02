@@ -3,6 +3,10 @@
 
 #include "AbilitySystem/WarriorAttributeSet.h"
 #include "GameplayEffectExtension.h"
+#include "WarriorFunctionLibrary.h"
+#include "WarriorGameplayTags.h"
+
+#include "WarriorDebugHelper.h"
 
 UWarriorAttributeSet::UWarriorAttributeSet()
 {
@@ -33,13 +37,16 @@ void UWarriorAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 		const float OldHealth = GetCurrentHealth();
 		const float DamageDone = GetDamageTaken();
 		const float NewCurrentHealth = FMath::Clamp(OldHealth-DamageDone, 0.f, GetMaxHealth());
-		SetCurrentRage(NewCurrentHealth);
+		SetCurrentHealth(NewCurrentHealth);
+
+		Debug::Print(TEXT("OldHealth"), OldHealth, FColor::Green);
+		Debug::Print(TEXT("NewCurrentHealth"), NewCurrentHealth, FColor::Green);
 
 		//TODO :: Notify UI
 
 		if (NewCurrentHealth == 0.f)
 		{
-			//TODO :: Character Death:
+			UWarriorFunctionLibrary::AddGameplayTagToActorIfNone(Data.Target.GetAvatarActor(), WarriorGameplayTags::Shared_Status_Death);
 		}
 	}
 
