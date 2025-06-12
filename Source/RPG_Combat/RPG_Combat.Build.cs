@@ -16,6 +16,8 @@ public class RPG_Combat : ModuleRules
 			"EnhancedInput",
 			"GameplayTags",
             "EnhancedInput",
-		"GameplayTasks"});
+			"GameplayTasks",
+			"AnimGraphRuntime",
+			"MotionWarping"});
 	}
 }
