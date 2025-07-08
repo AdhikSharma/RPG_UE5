@@ -135,9 +135,6 @@ void AWarriorCharacter::Input_Look(const FInputActionValue& InputActionValue)
 	{
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
-
-	
-
 }
 
 void AWarriorCharacter::Input_AbilityInputPressed(FGameplayTag InInputTag)

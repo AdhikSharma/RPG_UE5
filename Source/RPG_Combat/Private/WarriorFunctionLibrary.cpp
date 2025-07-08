@@ -126,3 +126,13 @@ FGameplayTag UWarriorFunctionLibrary::ComputeHitReactDirectionTag(AActor* InAtta
 	return WarriorGameplayTags::Shared_Status_HitReact_Front;
 
 }
+
+bool UWarriorFunctionLibrary::IsValidBlock(AActor* InAttacker, AActor* InDefender)
+{
+	check(InAttacker && InAttacker);
+	
+	const float AngleDiff = FVector::DotProduct(InAttacker->GetActorForwardVector(), InDefender->GetActorForwardVector());
+
+	
+	return AngleDiff<-0.1f;
+}
