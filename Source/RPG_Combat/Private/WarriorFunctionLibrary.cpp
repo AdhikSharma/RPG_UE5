@@ -134,5 +134,5 @@ bool UWarriorFunctionLibrary::IsValidBlock(AActor* InAttacker, AActor* InDefende
 	const float AngleDiff = FVector::DotProduct(InAttacker->GetActorForwardVector(), InDefender->GetActorForwardVector());
 
 	
-	return AngleDiff<-0.1f;
+	return AngleDiff< -0.1f;
 }
