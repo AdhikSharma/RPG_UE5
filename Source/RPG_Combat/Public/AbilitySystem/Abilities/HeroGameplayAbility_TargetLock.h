@@ -11,6 +11,7 @@
  */
 
 class UWarriorWidgetBase;
+class UInputMappingContext;
 
 UCLASS()
 class RPG_COMBAT_API UHeroGameplayAbility_TargetLock : public UWarriorHeroGameplayAbility
@@ -27,16 +28,23 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnTargetLockTick(float DeltaTine);
 
+	UFUNCTION(BlueprintCallable)
+	void SwitchTarget(const FGameplayTag& InSwitchDirectionTag);
 
 private:
 	void TryLockOnTarget();
 	void GetAvailableActorsToLock();
 	AActor* GetNearestActrorFromAvailableActors(const TArray<AActor*>& InAvailableActors);
+	void GetAvailableActorsAroundTheTarget(TArray<AActor*>& OutActorsOnLeft, TArray<AActor*>& OutActorsOnRight);
 	void DrawTargetLockWidget();
 	void SetTargetLockWidgetPosition();
+	void InitTargetLockMovement();
+	void InitTargetLockMappingContext();
 
 	void CancelTargetLockAbility();
 	void CleanUp();
+	void ResetTargetLockMovement();
+	void ResetTargetLockMappingContext();
 
 
 	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
@@ -54,6 +62,18 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
 	TSubclassOf<UWarriorWidgetBase> TargetLockWidgetClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
+	float TargetLookRotationInterpSpeed = 5.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
+	float TargetLockMaxWalkSpeed = 150.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
+	UInputMappingContext* TargetLockMappingContext;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TargetLock")
+	float TargetLockCameraDistance = 20.f;
+
 	UPROPERTY()
 	TArray<AActor*> AvailableActorsToLock;
 
@@ -64,5 +84,10 @@ private:
 	UWarriorWidgetBase* DrawnTargetLockWidget;
 
 	UPROPERTY()
-	FVector2D TargetLockWidgetSize;
+	FVector2D TargetLockWidgetSize = FVector2D::ZeroVector;
+
+	UPROPERTY()
+	float CachedDefMaxWalkSpeed = 0.f;
+
+
 };
