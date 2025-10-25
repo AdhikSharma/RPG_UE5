@@ -41,7 +41,9 @@ FString UBTTask_RotateToFaceTarget::GetStaticDescription() const
 {
 	const FString KeyDescription = InTargetToFaceKey.SelectedKeyName.ToString();
 
-	return FString::Printf(TEXT("Smoothly rotates to face %s Key until the angle precesion %f"),*KeyDescription,*FString::SanitizeFloat(AnglePrecision));
+	return FString::Format(
+	TEXT("Smoothly rotates to face {0} Key until the angle precision {1}"),
+	{ *KeyDescription, *FString::SanitizeFloat(AnglePrecision) });
 }
 
 EBTNodeResult::Type UBTTask_RotateToFaceTarget::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

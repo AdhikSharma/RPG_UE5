@@ -2,7 +2,7 @@
 
 
 #include "DataAsset/StartupData/DataAsset_HeoStartupData.h"
-#include "AbilitySystem/Abilities/WarriorGameplayAbility.h"
+#include "AbilitySystem/Abilities/WarriorHeroGameplayAbility.h"
 #include "AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "WarriorTypes/WarriorStructTypes.h"
 
@@ -13,11 +13,11 @@ void UDataAsset_HeoStartupData::GiveToAbilitySystemComponent(UWarriorAbilitySyst
     for (const FWarriorHeroAbilitySet& AbilitySet : HeroStartupAbilitySets)
     {
         if (!AbilitySet.IsValid()) continue;
-
-        FGameplayAbilitySpec AbilitySpec(AbilitySet.AbilityToGrant);
+        FGameplayAbilitySpec AbilitySpec;
+        AbilitySpec.Ability = AbilitySet.AbilityToGrant ? AbilitySet.AbilityToGrant->GetDefaultObject<UGameplayAbility>() : nullptr;
         AbilitySpec.SourceObject = InASCToGive->GetAvatarActor();
         AbilitySpec.Level = ApplyLevel;
-        AbilitySpec.DynamicAbilityTags.AddTag(AbilitySet.InputTag);
+        AbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilitySet.InputTag);
 
         InASCToGive->GiveAbility(AbilitySpec);
 
